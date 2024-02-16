@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Models\Address;
+use App\Models\Domain;
 use App\Models\User2;
 use App\Models\Wilaya;
 
@@ -24,19 +25,22 @@ class Register2
             'name' => $args['wilaya']['name'],
         ]);
 
-        $address= Address::create([
-            'description' => $args['address']['description'],
-            'latitude' => $args['address']['latitude'],
-            'longitude' => $args['address']['longitude'],
+        $domain= Domain::create([
+            'name' => $args['domain']['name'],
+            'description' => $args['domain']['description'],
+            'icon' => $args['domain']['icon'],
         ]);
 
         User2::create([
             'first_name' => $args['first_name'],
             'last_name' => $args['last_name'],
             'email' => $args['email'],
+            'phone' => $args['phone'],
+            'gender' => $args['gender'],
             'password' => bcrypt($args['password']),
             'wilaya_id' => $wilaya->id,
-            'address_id' => $address->id,
+            'domain_id' => $domain->id,
+            'year_of_experience' => $args['year_of_experience'],
         ]);
 
         return "User created successfully";
