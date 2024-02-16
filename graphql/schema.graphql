@@ -46,6 +46,20 @@ type User {
 }
 
 
+input WilayaInput{
+    name: String!
+}
+input AddressInput{
+    description: String!
+    latitude: String!
+    longitude: String!
+}
+input domainInput{
+    name: String!
+    description: String!
+    icon: String
+}
+
 #import user1.graphql
 #import user2.graphql
 #import user3.graphql

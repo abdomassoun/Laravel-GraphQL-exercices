@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('phone');
-            $table->boolean('gender');
             $table->foreignId('wilaya_id')->constrained('wilayas');
-            $table->foreignId('address_id')->constrained('adreesses')->onDelete('cascade');
+            $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories');
             $table->string('year_of_experience');
             $table->string('devise_token')->nullable();

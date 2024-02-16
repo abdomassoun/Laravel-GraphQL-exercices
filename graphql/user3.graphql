@@ -1,0 +1,24 @@
+extend type Mutation{
+
+    Register3(
+        first_name: String!
+        last_name: String! 
+        password: String!
+        email: String!
+        phone: String!
+        wilaya: WilayaInput!
+        category: categoryInput!
+        address: AddressInput!
+        year_of_experience: String!
+    ): String!
+
+
+}
+
+input categoryInput{
+    name: String!
+    description: String!
+    icon: String
+}
+
+

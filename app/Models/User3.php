@@ -9,6 +9,21 @@ class User3 extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'address_id',
+        'wilaya_id',
+        'category_id',
+        'password',
+        'devise_token',
+        'year_of_experience',
+        ];
+
+    
+
 
     public function address()
     {

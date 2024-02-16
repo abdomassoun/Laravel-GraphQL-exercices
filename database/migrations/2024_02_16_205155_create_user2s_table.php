@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('phone');
             $table->boolean('gender');
             $table->foreignId('wilaya_id')->constrained('wilayas');
-            $table->foreignId('address_id')->constrained('adreesses')->onDelete('cascade');
             $table->foreignId('domain_id')->constrained('domains');
             $table->string('year_of_experience');
             $table->string('devise_token')->nullable();

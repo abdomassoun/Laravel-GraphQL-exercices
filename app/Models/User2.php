@@ -14,8 +14,13 @@ class User2 extends Model
         'first_name',
         'last_name',
         'email',
+        'phone',
+        'gender',
         'password',
-        
+        'devise_token',
+        'wilaya_id',
+        'domain_id',
+        'year_of_experience'
     ];
     protected $hidden = [
         'password',

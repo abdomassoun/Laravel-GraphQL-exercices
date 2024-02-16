@@ -7,18 +7,14 @@ extend type Mutation{
         email: String!
         phone: String!
         gender: Boolean!
-        wilaya: Wilaya!
-        address: Address!
+        wilaya: WilayaInput!
+        domain: domainInput!
+        year_of_experience: String!
     ): String!
 
 
 }
-type Wilaya{
-    name: String!
-}
-type Address{
-    description: String!
-    latitude: String!
-    longitude: String!
-}
+
+
+
 
