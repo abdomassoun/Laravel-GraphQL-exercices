@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password')->bcrypt();
             $table->string('phone')->unique();
             $table->boolean('gender');
-            $table->string('devise_token')->nullable();
+            $table->string('device_token')->nullable();
 
             $table->timestamps();
         });

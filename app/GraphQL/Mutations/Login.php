@@ -23,6 +23,8 @@ final class Login
         //     ]);
         // }
         $user->device_token = $args['device_token'];
+
+        $user->save();
      
         return $user->createToken($args['device_token'])->plainTextToken;    }
 }

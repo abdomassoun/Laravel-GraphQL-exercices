@@ -20,6 +20,7 @@ class User1 extends Model
         'gender',
         'email',
         'password',
+        'device_token',
     ];
     protected $hidden = [
         'password',

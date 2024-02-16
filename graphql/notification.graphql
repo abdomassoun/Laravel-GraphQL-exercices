@@ -1,0 +1,36 @@
+extend type Mutation{
+
+
+SendNotification(
+    title: String!
+    description: String!
+    user_id: ID!
+): String!
+}
+
+extend type Query {
+    # getNotifications(
+    #     page: Int!
+    #     category: Int!
+    # ): [Notification]
+
+
+        notifications: [Notification!]! @paginate(type:CONNECTION , defaultCount: 10) 
+
+
+}
+
+
+type LastQuery {
+    page: Int!
+    category: Int!
+}
+
+type Notification {
+    id: ID!
+    title: String!
+    description: String!
+    is_read: Boolean!
+    created_at: String!
+    updated_at: String!
+}

@@ -63,3 +63,4 @@ input domainInput{
 #import user1.graphql
 #import user2.graphql
 #import user3.graphql
+#import notification.graphql

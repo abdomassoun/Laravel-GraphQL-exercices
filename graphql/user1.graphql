@@ -6,6 +6,17 @@ extend type Query {
 
       "Search by email address."
       email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])
+
+    phone: String @eq @rules(apply: ["prohibits:id", "required_without:id", "string"])
+
+    gender: Boolean @eq @rules(apply: ["prohibits:id", "required_without:id", "boolean"])
+
+    first_name: String @eq @rules(apply: ["prohibits:id", "required_without:id", "string"])
+
+    last_name: String @eq @rules(apply: ["prohibits:id", "required_without:id", "string"])
+
+    device_token: String @eq @rules(apply: ["prohibits:id", "required_without:id", "string"])
+
     ): User @find
 
     "List multiple users."
@@ -19,14 +30,21 @@ type User1 {
     "Unique primary key."
     id: ID!
 
-    "Non-unique name."
-    name: String!
+    first_name: String!
+
+    last_name: String!
 
     "Unique email address."
     email: String!
 
     "When the email was verified."
     email_verified_at: DateTime
+
+    gender: Boolean!
+
+    phone: String!
+
+    device_token: String
 
     "When the account was created."
     created_at: DateTime!
@@ -48,7 +66,7 @@ type User1 {
         gender: Boolean! @rules(apply: ["required", "boolean"])
 
         "Unique email address."
-        email: String! @rules(apply: ["required", "email", "max:255"])
+        email: String! @rules(apply: ["required", "email", "max:255", "unique:user1s,email"])
 
         "Password."
         password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
@@ -62,9 +80,8 @@ type User1 {
         first_name: String @rules(apply: ["string", "max:255"])
         
         last_name: String @rules(apply: ["string", "max:255"])
-
-        "Unique email address."
-        email: String @rules(apply: ["email", "max:255"])
+        
+        phone: String @rules(apply: ["string", "max:255"])
 
         "Password."
         password: String @rules(apply: ["string", "min:8", "max:255"])
