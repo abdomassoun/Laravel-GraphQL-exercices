@@ -1,0 +1,96 @@
+extend type Query {
+    "Find a single user by an identifying attribute."
+    user1(
+      "Search by primary key."
+      id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
+
+      "Search by email address."
+      email: String @eq @rules(apply: ["prohibits:id", "required_without:id", "email"])
+    ): User @find
+
+    "List multiple users."
+    users1(
+      "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+      name: String @where(operator: "like")
+    ): [User1!]! @paginate(defaultCount: 10)
+}
+
+type User1 {
+    "Unique primary key."
+    id: ID!
+
+    "Non-unique name."
+    name: String!
+
+    "Unique email address."
+    email: String!
+
+    "When the email was verified."
+    email_verified_at: DateTime
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+}
+
+
+ type Mutation{
+    createUser1(
+        "Non-unique name."
+        first_name: String! @rules(apply: ["required", "string", "max:255"])
+
+        last_name: String! @rules(apply: ["required", "string", "max:255"])
+
+        phone: String! @rules(apply: ["required", "string", "max:255"])
+
+        gender: Boolean! @rules(apply: ["required", "boolean"])
+
+        "Unique email address."
+        email: String! @rules(apply: ["required", "email", "max:255"])
+
+        "Password."
+        password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
+
+    ): User1 @create
+    
+
+    updateUser1(
+        id: ID! @eq @rules(apply: ["required", "integer"])
+
+        first_name: String @rules(apply: ["string", "max:255"])
+        
+        last_name: String @rules(apply: ["string", "max:255"])
+
+        "Unique email address."
+        email: String @rules(apply: ["email", "max:255"])
+
+        "Password."
+        password: String @rules(apply: ["string", "min:8", "max:255"])
+    ): User1 @update
+
+    Login(
+        email: String!
+
+        password: String!
+
+        device_token: String! 
+    ): String!
+
+
+  Register(
+        first_name: String!
+        last_name: String! 
+        password: String!
+        email: String!
+        phone: String!
+        phone: String! 
+        gender: Boolean!
+    ): String!
+
+
+}
+
+
+

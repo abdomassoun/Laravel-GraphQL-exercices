@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('user1s', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('password')->bcrypt();
+            $table->string('phone')->unique();
+            $table->boolean('gender');
+            $table->string('devise_token')->nullable();
+
             $table->timestamps();
         });
     }

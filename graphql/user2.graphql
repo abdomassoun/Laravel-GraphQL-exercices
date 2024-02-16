@@ -1,0 +1,24 @@
+extend type Mutation{
+
+    Register2(
+        first_name: String!
+        last_name: String! 
+        password: String!
+        email: String!
+        phone: String!
+        gender: Boolean!
+        wilaya: Wilaya!
+        address: Address!
+    ): String!
+
+
+}
+type Wilaya{
+    name: String!
+}
+type Address{
+    description: String!
+    latitude: String!
+    longitude: String!
+}
+
