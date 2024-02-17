@@ -17,11 +17,11 @@ final class Login
 
         $user = User1::where('email', $args['email'])->first();
  
-        // if (! $user ||  $args['password']=! $user->password){//! Hash::check($args['password'], $user->password)) {
-        //     throw ValidationException::withMessages([
-        //         'email' => ['The provided credentials are incorrect.'],
-        //     ]);
-        // }
+        if (! $user || ! Hash::check($args['password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
         $user->device_token = $args['device_token'];
 
         $user->save();

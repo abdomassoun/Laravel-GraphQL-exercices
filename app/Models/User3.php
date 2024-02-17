@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User3 extends Model
+class User3 extends User
 {
     use HasFactory;
 
@@ -23,7 +23,7 @@ class User3 extends Model
         ];
 
     
-
+    protected $table = 'user3s';
 
     public function address()
     {

@@ -15,34 +15,41 @@ class Register2
      */
     public function __invoke($_, array $args)
     {
-        $user = User2::where('email', $args['email'])->first();
+        $users = $args['users'];
+        $results = []; // Create an empty array to store the return values
 
-        if ($user) {
-            return "User already exists";
+        foreach ($users as $user) {
+            $existingUser = User2::where('email', $user['email'])->first();
+
+            if ($existingUser) {
+                $results[] = "User with email {$user['email']} already exists";
+            } else {
+                $wilaya = Wilaya::create([
+                    'name' => $user['wilaya']['name'],
+                ]);
+
+                $domain = Domain::create([
+                    'name' => $user['domain']['name'],
+                    'description' => $user['domain']['description'],
+                    'icon' => $user['domain']['icon'],
+                ]);
+
+                User2::create([
+                    'first_name' => $user['first_name'],
+                    'last_name' => $user['last_name'],
+                    'email' => $user['email'],
+                    'phone' => $user['phone'],
+                    'gender' => $user['gender'],
+                    'password' => bcrypt($user['password']),
+                    'wilaya_id' => $wilaya->id,
+                    'domain_id' => $domain->id,
+                    'year_of_experience' => $user['year_of_experience'],
+                ]);
+
+                $results[] = "User with email {$user['email']} created successfully";
+            }
         }
 
-        $wilaya=Wilaya::create([
-            'name' => $args['wilaya']['name'],
-        ]);
-
-        $domain= Domain::create([
-            'name' => $args['domain']['name'],
-            'description' => $args['domain']['description'],
-            'icon' => $args['domain']['icon'],
-        ]);
-
-        User2::create([
-            'first_name' => $args['first_name'],
-            'last_name' => $args['last_name'],
-            'email' => $args['email'],
-            'phone' => $args['phone'],
-            'gender' => $args['gender'],
-            'password' => bcrypt($args['password']),
-            'wilaya_id' => $wilaya->id,
-            'domain_id' => $domain->id,
-            'year_of_experience' => $args['year_of_experience'],
-        ]);
-
-        return "User created successfully";
+        return $results;
     }
 }

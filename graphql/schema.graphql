@@ -17,6 +17,33 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
       "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
       name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
+
+
+
+    SearchUsers(
+        first_name: String @rules(apply: ["string"])
+
+        last_name: String @rules(apply: ["string"])
+
+        email: String @rules(apply: ["email"])
+
+        phone: String @rules(apply: ["string"])
+
+        category_id: String @rules(apply: ["exists:categories,id"])
+
+        wilaya_id: String @rules(apply: ["exists:wilayas,id"])
+
+        domain_id: String @rules(apply: ["exists:domains,id"])
+
+        year_of_experience: String @rules(apply: ["string"])
+
+        address: String @rules(apply: ["string"])
+
+
+    ): [User!]! @paginate(defaultCount: 10)
+
+
+
 }
 
 "Account of a person who utilizes this application."

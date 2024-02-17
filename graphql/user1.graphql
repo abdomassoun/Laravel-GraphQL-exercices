@@ -17,7 +17,7 @@ extend type Query {
 
     device_token: String @eq @rules(apply: ["prohibits:id", "required_without:id", "string"])
 
-    ): User @find
+    ): User1 @find
 
     "List multiple users."
     users1(
@@ -96,18 +96,19 @@ type User1 {
     ): String!
 
 
-  Register(
-        first_name: String!
-        last_name: String! 
-        password: String!
-        email: String!
-        phone: String!
-        phone: String! 
-        gender: Boolean!
-    ): String!
-
+Register(
+            users: [user1Input!]! @rules(apply: ["required"])
+    ): [String!]!
 
 }
 
 
 
+input user1Input{
+    first_name: String! @rules(apply: ["required", "string", "max:255"])
+    last_name: String! @rules(apply: ["required", "string", "max:255"])
+    email: String! @rules(apply: ["required", "email", "max:255", "unique:user1s,email"])
+    password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
+    phone: String! @rules(apply: ["required", "string", "max:255"])
+    gender: Boolean! @rules(apply: ["required", "boolean"])
+    }

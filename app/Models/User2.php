@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User2 extends Model
+class User2 extends User
 {
-    use HasFactory;
+    // use HasFactory;
 
 
     protected $fillable = [
@@ -22,10 +22,12 @@ class User2 extends Model
         'domain_id',
         'year_of_experience'
     ];
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
+    
+    protected $table = 'user2s';
 
     public function address()
     {

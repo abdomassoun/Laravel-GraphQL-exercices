@@ -1,7 +1,15 @@
 extend type Mutation{
 
-    Register2(
-        first_name: String!
+
+Register2(
+            users: [user2Input!]! @rules(apply: ["required"])
+    ): [String!]!
+
+
+}
+
+input user2Input{
+        first_name: String! 
         last_name: String! 
         password: String!
         email: String!
@@ -10,9 +18,6 @@ extend type Mutation{
         wilaya: WilayaInput!
         domain: domainInput!
         year_of_experience: String!
-    ): String!
-
-
 }
 
 

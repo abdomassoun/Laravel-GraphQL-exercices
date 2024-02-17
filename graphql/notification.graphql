@@ -15,7 +15,10 @@ extend type Query {
     # ): [Notification]
 
 
-        notifications: [Notification!]! @paginate(type:CONNECTION , defaultCount: 10) 
+        notifications(
+                notification_category:NotificationCategory! @eq @rules(apply: ["required", "in:ALERT,WARNING,ERROR,SUCCESS,INFO"])
+
+        ): [Notification!]! @paginate(type:CONNECTION , defaultCount: 10) @mycustomdirective
 
 
 }
@@ -31,6 +34,15 @@ type Notification {
     title: String!
     description: String!
     is_read: Boolean!
+    notification_category: NotificationCategory!
     created_at: String!
     updated_at: String!
+}
+
+enum NotificationCategory {
+    ALERT
+    WARNING
+    ERROR
+    SUCCESS
+    INFO
 }
