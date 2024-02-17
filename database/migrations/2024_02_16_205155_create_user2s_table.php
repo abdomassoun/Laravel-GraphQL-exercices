@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('wilaya_id')->constrained('wilayas');
             $table->foreignId('domain_id')->constrained('domains');
             $table->string('year_of_experience');
-            $table->string('devise_token')->nullable();
+            $table->string('device_token')->nullable();
             $table->timestamps();
         });
     }

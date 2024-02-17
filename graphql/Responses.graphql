@@ -1,0 +1,10 @@
+type RegisterResponse {
+    message: String!
+    status: String!
+}
+
+type LoginResponse {
+    message: String!
+    status: String!
+    token: String
+}

@@ -1,0 +1,63 @@
+# directive @requiredIf(
+#     field: String!
+# ) on FIELD_DEFINITION
+
+input userInput {
+    first_name: String! @rules(apply: ["required", "string", "max:255"])
+    last_name: String! @rules(apply: ["required", "string", "max:255"])
+    password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
+    email: String! @rules(apply: ["required", "email", "max:255", "unique:users,email"])
+    phone: String! @rules(apply: ["required", "string"])
+    year_of_experience: String @rules(apply: ["string", "max:255"])
+    device_token: String @rules(apply: ["string", "max:255"])
+
+    gender: Boolean! # @requiredIf(field: "domain") # user1 and 2 only have
+    wilaya: WilayaInput # user2 and 3 only have
+    category: categoryInput # user3 only have
+    address: AddressInput # user3 only have
+    domain: domainInput # user2 only have
+}
+
+input WilayaInput {
+    name: String!
+}
+
+input AddressInput {
+    description: String!
+    latitude: String!
+    longitude: String!
+}
+
+input domainInput {
+    name: String!
+    description: String!
+    icon: String
+}
+
+input categoryInput {
+    name: String!
+    description: String!
+    icon: String
+}
+
+# input user2Input{
+#     first_name: String!
+#     last_name: String!
+#     password: String!
+#     email: String!
+#     phone: String!
+#     gender: Boolean!
+#     wilaya: WilayaInput!
+#     domain: domainInput!
+#     year_of_experience: String!
+# }
+
+# input user1Input{
+#     first_name: String! @rules(apply: ["required", "string", "max:255"])
+#     last_name: String! @rules(apply: ["required", "string", "max:255"])
+#     email: String! @rules(apply: ["required", "email", "max:255"])
+#     password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
+#     phone: String! @rules(apply: ["required", "string", "max:255"])
+#     gender: Boolean! @rules(apply: ["required", "boolean"])
+#     device_token: String @rules(apply: ["string", "max:255"])
+# }

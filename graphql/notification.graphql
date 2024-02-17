@@ -1,28 +1,16 @@
-extend type Mutation{
-
-
-SendNotification(
-    title: String!
-    description: String!
-    user_id: ID!
-): String!
+type Mutation {
+    SendNotification(
+        title: String!
+        description: String!
+        user_id: ID!
+    ): String!
 }
 
-extend type Query {
-    # getNotifications(
-    #     page: Int!
-    #     category: Int!
-    # ): [Notification]
-
-
-        notifications(
-                notification_category:NotificationCategory! @eq @rules(apply: ["required", "in:ALERT,WARNING,ERROR,SUCCESS,INFO"])
-
-        ): [Notification!]! @paginate(type:CONNECTION , defaultCount: 10) @mycustomdirective
-
-
+type Query {
+    notifications(
+        notification_category: NotificationCategoryEnum! @eq @rules(apply: ["required", "in:ALERT,WARNING,ERROR,SUCCESS,INFO"])
+    ): [Notification!]! @paginate(type: CONNECTION, defaultCount: 10) @mycustomdirective
 }
-
 
 type LastQuery {
     page: Int!
@@ -34,15 +22,7 @@ type Notification {
     title: String!
     description: String!
     is_read: Boolean!
-    notification_category: NotificationCategory!
+    notification_category: NotificationCategoryEnum!
     created_at: String!
     updated_at: String!
-}
-
-enum NotificationCategory {
-    ALERT
-    WARNING
-    ERROR
-    SUCCESS
-    INFO
 }

@@ -1,0 +1,13 @@
+enum NotificationCategoryEnum {
+    ALERT
+    WARNING
+    ERROR
+    SUCCESS
+    INFO
+}
+
+enum UserTypeEnum {
+    USER1
+    USER2
+    USER3
+}

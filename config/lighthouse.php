@@ -1,6 +1,12 @@
 <?php declare(strict_types=1);
 
 return [
+
+    'directives' => [
+        // Other directives...
+        'requiredIf' => \App\GraphQL\Directives\RequiredIfDirective::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Route Configuration

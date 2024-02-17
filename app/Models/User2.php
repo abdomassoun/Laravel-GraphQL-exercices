@@ -17,7 +17,7 @@ class User2 extends User
         'phone',
         'gender',
         'password',
-        'devise_token',
+        'device_token',
         'wilaya_id',
         'domain_id',
         'year_of_experience'

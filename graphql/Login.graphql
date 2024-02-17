@@ -1,0 +1,8 @@
+extend type Mutation {
+        Login(
+                email: String!
+                password: String!
+                device_token: String!
+                UserType: UserTypeEnum!
+        ): LoginResponse!
+}

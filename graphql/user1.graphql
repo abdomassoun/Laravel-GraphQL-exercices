@@ -22,7 +22,7 @@ extend type Query {
     "List multiple users."
     users1(
       "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
-      name: String @where(operator: "like")
+      first_name: String @where(operator: "like")
     ): [User1!]! @paginate(defaultCount: 10)
 }
 
@@ -55,24 +55,7 @@ type User1 {
 
 
  type Mutation{
-    createUser1(
-        "Non-unique name."
-        first_name: String! @rules(apply: ["required", "string", "max:255"])
 
-        last_name: String! @rules(apply: ["required", "string", "max:255"])
-
-        phone: String! @rules(apply: ["required", "string", "max:255"])
-
-        gender: Boolean! @rules(apply: ["required", "boolean"])
-
-        "Unique email address."
-        email: String! @rules(apply: ["required", "email", "max:255", "unique:user1s,email"])
-
-        "Password."
-        password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
-
-    ): User1 @create
-    
 
     updateUser1(
         id: ID! @eq @rules(apply: ["required", "integer"])
@@ -87,28 +70,7 @@ type User1 {
         password: String @rules(apply: ["string", "min:8", "max:255"])
     ): User1 @update
 
-    Login(
-        email: String!
-
-        password: String!
-
-        device_token: String! 
-    ): String!
-
-
-Register(
-            users: [user1Input!]! @rules(apply: ["required"])
-    ): [String!]!
-
 }
 
 
 
-input user1Input{
-    first_name: String! @rules(apply: ["required", "string", "max:255"])
-    last_name: String! @rules(apply: ["required", "string", "max:255"])
-    email: String! @rules(apply: ["required", "email", "max:255", "unique:user1s,email"])
-    password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
-    phone: String! @rules(apply: ["required", "string", "max:255"])
-    gender: Boolean! @rules(apply: ["required", "boolean"])
-    }

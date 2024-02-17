@@ -1,0 +1,10 @@
+extend type Mutation{
+
+Register(
+    users: [userInput!]! @rules(apply: ["required"])
+    ): [RegisterResponse!]!
+
+}
+
+
+
