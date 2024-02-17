@@ -1,13 +1,15 @@
+# Enum representing different categories of notifications
 enum NotificationCategoryEnum {
-    ALERT
-    WARNING
-    ERROR
-    SUCCESS
-    INFO
+    ALERT   # Represents an alert notification
+    WARNING # Represents a warning notification
+    ERROR   # Represents an error notification
+    SUCCESS # Represents a success notification
+    INFO    # Represents an informational notification
 }
 
+# Enum representing different types of users
 enum UserTypeEnum {
-    USER1
-    USER2
-    USER3
+    USER1   # Represents user type 1
+    USER2   # Represents user type 2
+    USER3   # Represents user type 3
 }

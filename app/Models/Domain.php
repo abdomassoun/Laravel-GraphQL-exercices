@@ -14,4 +14,9 @@ class Domain extends Model
         'description', 
         'icon',
     ];
+
+    public function user2()
+    {
+        return $this->belongsTo(User2::class);
+    }
 }

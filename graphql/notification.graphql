@@ -1,28 +1,34 @@
-type Mutation {
+# Mutation type for sending a notification
+extend type Mutation {
+    # Sends a notification with the given title, description, and user ID
     SendNotification(
-        title: String!
-        description: String!
-        user_id: ID!
-    ): String!
+        title: String! # Title of the notification
+        description: String! # Description of the notification
+        user_id: ID! # ID of the user to whom the notification is sent
+    ): String! # Returns a success message
 }
 
+# Query type for retrieving notifications
 type Query {
+    # Retrieves notifications based on the specified category
     notifications(
-        notification_category: NotificationCategoryEnum! @eq @rules(apply: ["required", "in:ALERT,WARNING,ERROR,SUCCESS,INFO"])
-    ): [Notification!]! @paginate(type: CONNECTION, defaultCount: 10) @mycustomdirective
+        notification_category: NotificationCategoryEnum! @eq @rules(apply: ["required", "in:ALERT,WARNING,ERROR,SUCCESS,INFO"]) # Category of the notifications to retrieve
+    ): [Notification!]! @paginate(type: CONNECTION, defaultCount: 10) @mycustomdirective # Returns a paginated list of notifications
 }
 
+# Custom type for storing the last query information
 type LastQuery {
-    page: Int!
-    category: Int!
+    page: Int! # Page number of the last query
+    category: Int! # Category of the last query
 }
 
+# Type representing a notification
 type Notification {
-    id: ID!
-    title: String!
-    description: String!
-    is_read: Boolean!
-    notification_category: NotificationCategoryEnum!
-    created_at: String!
-    updated_at: String!
+    id: ID! # Unique identifier of the notification
+    title: String! # Title of the notification
+    description: String! # Description of the notification
+    is_read: Boolean! # Indicates whether the notification has been read
+    notification_category: NotificationCategoryEnum! # Category of the notification
+    created_at: String! # Timestamp indicating when the notification was created
+    updated_at: String! # Timestamp indicating when the notification was last updated
 }

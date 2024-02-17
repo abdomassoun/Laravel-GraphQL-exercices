@@ -11,9 +11,11 @@ class Wilaya extends Model
     protected $fillable = [
         'name',
     ];
-    public function user1()
+    // i know its not right to do this but i have to do it for now
+    // sluton is to create a parent class for user2 and user3
+    public function user13()
     {
-        return $this->belongsToMany(User1::class);
+        return $this->belongsToMany(User3::class);
     }
 
     public function user2()

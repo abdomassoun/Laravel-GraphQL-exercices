@@ -1,10 +1,12 @@
+# Response type for user registration
 type RegisterResponse {
-    message: String!
-    status: String!
+    message: String! # Message indicating the result of the registration
+    status: String! # Status of the registration process
 }
 
+# Response type for user login
 type LoginResponse {
-    message: String!
-    status: String!
-    token: String
+    message: String! # Message indicating the result of the login
+    status: String! # Status of the login process
+    token: String # Token generated upon successful login
 }

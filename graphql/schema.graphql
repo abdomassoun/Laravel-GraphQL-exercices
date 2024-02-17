@@ -1,33 +1,22 @@
+# FILEPATH: /C:/xampp/htdocs/daymain-test/graphql/schema.graphql
+
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 "Indicates what fields are available at the top level of a query operation."
-    type Query {
-    
+type Query {
+    # Search users based on various criteria.
     SearchUsers(
-        first_name: String @rules(apply: ["string"])
-
-        last_name: String @rules(apply: ["string"])
-
-        email: String @rules(apply: ["email"])
-
-        phone: String @rules(apply: ["string"])
-
-        category_id: String @rules(apply: ["exists:categories,id"])
-
-        wilaya_id: String @rules(apply: ["exists:wilayas,id"])
-
-        domain_id: String @rules(apply: ["exists:domains,id"])
-
-        year_of_experience: String @rules(apply: ["string"])
-
-        address: String @rules(apply: ["string"])
-
-
-    ): [User!]! @paginate(defaultCount: 10)
-
-
-
+        first_name: String @rules(apply: ["string"]) # Filter by first name.
+        last_name: String @rules(apply: ["string"]) # Filter by last name.
+        email: String @rules(apply: ["email"]) # Filter by email.
+        phone: String @rules(apply: ["string"]) # Filter by phone number.
+        category_id: String @rules(apply: ["exists:categories,id"]) # Filter by category ID.
+        wilaya_id: String @rules(apply: ["exists:wilayas,id"]) # Filter by wilaya ID.
+        domain_id: String @rules(apply: ["exists:domains,id"]) # Filter by domain ID.
+        year_of_experience: String @rules(apply: ["string"]) # Filter by year of experience.
+        address: String @rules(apply: ["string"]) # Filter by address.
+    ): [User!]! @paginate(defaultCount: 10) # Paginated list of users.
 }
 
 type User {
@@ -49,13 +38,6 @@ type User {
     "When the account was last updated."
     updated_at: DateTime!
 }
-
-
-
-
-
-
-
 
 #import enums.graphql
 #import Inputs.graphql

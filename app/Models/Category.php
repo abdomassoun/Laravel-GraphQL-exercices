@@ -14,4 +14,9 @@ class Category extends Model
         'description', 
         'icon',
     ];
+
+    public function user3()
+    {
+        return $this->belongsTo(User3::class);
+    }
 }

@@ -1,44 +1,57 @@
+# Directive to mark a field as required based on another field's value
 # directive @requiredIf(
 #     field: String!
 # ) on FIELD_DEFINITION
 
+# Input type for user data
 input userInput {
+    # Required fields with validation rules
     first_name: String! @rules(apply: ["required", "string", "max:255"])
     last_name: String! @rules(apply: ["required", "string", "max:255"])
     password: String! @rules(apply: ["required", "string", "min:8", "max:255"])
     email: String! @rules(apply: ["required", "email", "max:255", "unique:users,email"])
     phone: String! @rules(apply: ["required", "string"])
+
+    # Optional fields with validation rules
     year_of_experience: String @rules(apply: ["string", "max:255"])
     device_token: String @rules(apply: ["string", "max:255"])
 
-    gender: Boolean! # @requiredIf(field: "domain") # user1 and 2 only have
-    wilaya: WilayaInput # user2 and 3 only have
-    category: categoryInput # user3 only have
-    address: AddressInput # user3 only have
-    domain: domainInput # user2 only have
+    # Conditional fields based on other fields' values
+    gender: Boolean! # @requiredIf(field: "domain") # Only for user1 and user2
+    wilaya: WilayaInput # Only for user2 and user3
+    category: categoryInput # Only for user3
+    address: AddressInput # Only for user3
+    domain: domainInput # Only for user2
 }
 
+# Input type for wilaya data
 input WilayaInput {
     name: String!
 }
 
+# Input type for address data
 input AddressInput {
     description: String!
     latitude: String!
     longitude: String!
 }
 
+# Input type for domain data
 input domainInput {
     name: String!
     description: String!
     icon: String
 }
 
+# Input type for category data
 input categoryInput {
     name: String!
     description: String!
     icon: String
 }
+
+# ******** trash i will remove it later ********************************************************************************************************************
+
 
 # input user2Input{
 #     first_name: String!
@@ -52,6 +65,7 @@ input categoryInput {
 #     year_of_experience: String!
 # }
 
+# Example input type for user1
 # input user1Input{
 #     first_name: String! @rules(apply: ["required", "string", "max:255"])
 #     last_name: String! @rules(apply: ["required", "string", "max:255"])

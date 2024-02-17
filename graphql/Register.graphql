@@ -1,10 +1,8 @@
-extend type Mutation{
-
-Register(
-    users: [userInput!]! @rules(apply: ["required"])
+# Extend the Mutation type with a new Register field
+extend type Mutation {
+    # Register mutation to create new users
+    Register(
+        # Array of user input objects
+        users: [userInput!]! @rules(apply: ["required"])
     ): [RegisterResponse!]!
-
 }
-
-
-

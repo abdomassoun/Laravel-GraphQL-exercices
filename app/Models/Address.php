@@ -15,6 +15,9 @@ class Address extends Model
         'latitude',
         
     ];
+    // i know its not right to do this but i have to do it for now
+    // sluton is to create a parent class for user1 and user2 
+    
     public function user1()
     {
         return $this->belongsTo(User1::class);

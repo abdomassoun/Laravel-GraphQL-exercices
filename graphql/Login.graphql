@@ -1,8 +1,14 @@
+# Extend the Mutation type to include a Login field
 extend type Mutation {
+        # Login mutation to authenticate a user
         Login(
+                # The email of the user
                 email: String!
+                # The password of the user
                 password: String!
+                # The device token for push notifications
                 device_token: String!
+                # The type of user (USER1, USER2, USER3)
                 UserType: UserTypeEnum!
         ): LoginResponse!
 }
